@@ -121,6 +121,3 @@
 [submodule "htpasswd"]
 	path = htpasswd
 	url = https://github.com/Youscribe/htpasswd-cookbook.git
-[submodule "rabbitmq"]
-	path = rabbitmq
-	url = https://github.com/kirkbackus/rabbitmq.git
