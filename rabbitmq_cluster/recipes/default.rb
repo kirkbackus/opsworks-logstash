@@ -2,7 +2,7 @@
 instances = node[:opsworks][:layers][:rabbitmq][:instances]
 
 instances.each do |name, attrs|
-  hostsfile_entry attrs['public_dns_name'] do
+  hostsfile_entry attrs['ip'] do
     hostname  name
     unique    true
   end
