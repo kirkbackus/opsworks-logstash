@@ -25,6 +25,11 @@ rabbitmq_user node['rabbitmq_cluster']['user'] do
 end
 
 rabbitmq_user node['rabbitmq_cluster']['user'] do
+  tag "administrator"
+  action :set_tags
+end
+
+rabbitmq_user node['rabbitmq_cluster']['user'] do
   vhost "/"
   permissions ".* .* .*"
   action :set_permissions
