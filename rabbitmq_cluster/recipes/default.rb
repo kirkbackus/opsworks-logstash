@@ -3,7 +3,7 @@ instances = node[:opsworks][:layers][:rabbitmq][:instances]
 
 instances.each do |name, attrs|
   hostsfile_entry attrs['ip'] do
-    hostname  "rabbit@#{name}"
+    hostname  "#{name}"
     unique    true
   end
 end
@@ -14,23 +14,3 @@ node.set['rabbitmq']['cluster_disk_nodes'] = rabbit_nodes
 include_recipe 'rabbitmq'
 
 execute "chown -R rabbitmq:rabbitmq /var/lib/rabbitmq"
-
-rabbitmq_user "guest" do
-  action :delete
-end
-
-rabbitmq_user node['rabbitmq_cluster']['user'] do
-  password node['rabbitmq_cluster']['password']
-  action :add
-end
-
-rabbitmq_user node['rabbitmq_cluster']['user'] do
-  tag "administrator"
-  action :set_tags
-end
-
-rabbitmq_user node['rabbitmq_cluster']['user'] do
-  vhost "/"
-  permissions ".* .* .*"
-  action :set_permissions
-end
